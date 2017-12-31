@@ -60,10 +60,7 @@ namespace BCS
             PhigTimer.Start();
             vm.PhidgitController.open();
             DataContext = vm;
-            //ConnectionStringSettingsCollection connections = ConfigurationManager.ConnectionStrings;
-            //StoreConnectionString = connections["Store1Entities"].ConnectionString;
-            //AssemblyConnectionString = connections["AssemblyEntities1"].ConnectionString;
-
+           
         }
         private void passwordEntered_Click(object sender, RoutedEventArgs e)
         {
