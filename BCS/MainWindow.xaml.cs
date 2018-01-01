@@ -52,8 +52,6 @@ namespace BCS
             vm.bControllerOn = false;
             logger.Info("BCS start");
 
-            vm.PhidgitController.Attach += new Phidgets.Events.AttachEventHandler(PhidgitController_Attach);
-            vm.PhidgitController.Detach += new Phidgets.Events.DetachEventHandler(PhidgitController_Detach);
             PhigTimer = new DispatcherTimer();
             PhigTimer.Interval = TimeSpan.FromSeconds(5);
             PhigTimer.Tick += new EventHandler(timer_Tick);
@@ -62,50 +60,7 @@ namespace BCS
             DataContext = vm;
            
         }
-        private void passwordEntered_Click(object sender, RoutedEventArgs e)
-        {
-            string pass = passwordBox1.Password;
-            passwordBox1.Password = string.Empty;
-            if (pass == "tennis")
-            {
-                vm.bLoggedIn = true;
-                
-                    vm.ClassifyButtonText = "Admin Off";
-                    vm.ReClassifyButtonText = "ReClassify On";
-                    vm.QuickReClassifyButtonText = "Quick reclassify On";
-                    vm.BatchButtonText = "Batch On";
-                    BatchBCS.Visibility = Visibility.Visible;
-                    QuickReClassify.Visibility = Visibility.Visible;
-                    Classify.Visibility = Visibility.Visible;
-                if (vm.PhidgitController == null)
-                    vm.PhidgitController = new Phidgets.InterfaceKit();
-
-                vm.bControllerOn = false;
-                logger.Info("BCS start");
-
-                //vm.PhidgitController.Attach += new Phidgets.Events.AttachEventHandler(PhidgitController_Attach);
-                //vm.PhidgitController.Detach += new Phidgets.Events.DetachEventHandler(PhidgitController_Detach);
-                //PhigTimer = new DispatcherTimer();
-                //PhigTimer.Interval = TimeSpan.FromSeconds(5);
-                //PhigTimer.Tick += new EventHandler(timer_Tick);
-                //PhigTimer.Start();
-                //vm.PhidgitController.open();
-               
-                ReClassify.Visibility = Visibility.Visible;
-
-                SetFocusBarcode();
-                
-                
-            }
-
-        }
-
-        public void SetFocusBarcode()
-        {
-
-            Keyboard.Focus(Barcode);
-
-        }
+       
         //for the system to be totally operational we must get a response from the controller and
         //have database connectivity. If we have just database working then allow degraded operation
         void timer_Tick(object sender, EventArgs e)
@@ -127,6 +82,15 @@ namespace BCS
             CheckSystemState(true);
 
         }
+        void PhidgitController_Detach(object sender, Phidgets.Events.DetachEventArgs e)
+        {
+            logger.Info("PhidgitController_Detach");
+            vm.bControllerOn = false;
+            //            if (vm.errormsg == string.Empty)
+
+        }
+
+       
         void CheckSystemState(bool PhidgitState)
         {
             logger.Info("CheckSystemState start");
@@ -170,21 +134,19 @@ namespace BCS
                     led2.ColorOn = Colors.Green;
                     led2.IsActive = true;
                     vm.bTurnOnRegister = true;
-             //later       textBlock1.Text = "System Initialization Complete";
+                    textBlock1.Text = "System Initialization Complete";
                     if (led1.ColorOn == Colors.Green || vm.bSimulatePhigetsMode)
                     {
                         LoadedDone.Visibility = Visibility.Visible;
                         LoadingState.Visibility = Visibility.Collapsed;
                         ShowBCSUI();
-                            //registerView = new RegisterItem();
-                            //Views.Children.Add(registerView);
-                        
+                       
                     }
                 }
                 else
                 {
-               //later     DBErrorMsg.Text = vm.DBerrormsg;
-                //    textBlock1.Text = "System Initialization Failed";
+                    DBErrorMsg.Text = vm.DBerrormsg;
+                    textBlock1.Text = "System Initialization Failed";
                     led2.ColorOn = Colors.Red;
                     led2.IsActive = true;
                     vm.bTurnOnRegister = false;
@@ -195,19 +157,41 @@ namespace BCS
             logger.Info("CheckSystemState end");
 
         }
-        void PhidgitController_Detach(object sender, Phidgets.Events.DetachEventArgs e)
-        {
-            logger.Info("PhidgitController_Detach");
-            vm.bControllerOn = false;
-            //            if (vm.errormsg == string.Empty)
-
-        }
+       
 
         private void version_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("On The Spot BCS version 1.6 May 12 2014");
+            MessageBox.Show("On The Spot BCS version 1.8 Jan 1 2018");
         }
 
+        private void passwordEntered_Click(object sender, RoutedEventArgs e)
+        {
+            string pass = passwordBox1.Password;
+            passwordBox1.Password = string.Empty;
+            if (pass == "tennis")
+            {
+                vm.bLoggedIn = true;
+
+                vm.ClassifyButtonText = "Admin Off";
+                vm.ReClassifyButtonText = "ReClassify On";
+                vm.QuickReClassifyButtonText = "Quick reclassify On";
+                vm.BatchButtonText = "Batch On";
+                BatchBCS.Visibility = Visibility.Visible;
+                QuickReClassify.Visibility = Visibility.Visible;
+                Classify.Visibility = Visibility.Visible;
+                if (vm.PhidgitController == null)
+                    vm.PhidgitController = new Phidgets.InterfaceKit();
+
+                vm.bControllerOn = false;
+                logger.Info("BCS start");
+                ReClassify.Visibility = Visibility.Visible;
+
+                SetFocusBarcode();
+
+
+            }
+
+        }
         private void Classify_Click(object sender, RoutedEventArgs e)
         {
             vm.bLoggedIn = false;
@@ -314,6 +298,9 @@ namespace BCS
             ClearInput();
 
         }
+
+
+        //all the ducks are lined up so show the BCS UI and start classifying
         DispatcherTimer timer2 = null;
         AutoSortInfo assemblyInfo = null;
         
@@ -362,13 +349,19 @@ namespace BCS
         }
         List<string> testCodes = new List<string>() { "1000464542", "1000446923", "1000446919", "1000446918", "1000446917", "1000446916", "1000446915", "1000446914" };
         int dumcode = 0;
+        public void SetFocusBarcode()
+        {
+
+            Keyboard.Focus(Barcode);
+
+        }
         bool ProcessBarcode()
         {
 
             double itemCode = 0;
 
 
-      //      Barcode.Text = testCodes[dumcode++];      //DANGER
+     //       Barcode.Text = testCodes[dumcode++];      //DANGER
             logger.Info("Read bar code " + Barcode.Text);
             if (Barcode.Text == string.Empty)
                 return false;
