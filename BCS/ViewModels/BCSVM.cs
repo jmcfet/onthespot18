@@ -16,6 +16,7 @@ namespace OnTheSpot.ViewModels
     public class BCSandGSSVM:BaseViewModel
     {
         public bool BCSMode = true;
+        public InterfaceKit PhidgitController;
         public BCSandGSSVM(bool Mode)
         {
             BCSMode = Mode;

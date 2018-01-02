@@ -40,11 +40,8 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Led">
-      <HintPath>..\..\shared\Led\bin\Debug\Led.dll</HintPath>
-    </Reference>
     <Reference Include="NLog">
-      <HintPath>..\..\shared\NLog.dll</HintPath>
+      <HintPath>..\..\OnSpot17\OnTheSpot\bin\Debug\NLog.dll</HintPath>
     </Reference>
     <Reference Include="Phidget21.NET1.1, Version=2.1.8.0, Culture=neutral, PublicKeyToken=c2b1f2a3594bce52">
       <SpecificVersion>False</SpecificVersion>
@@ -72,7 +69,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\BCSVM.cs" />
     <Compile Include="Views\ItemImage.xaml.cs">
       <DependentUpon>ItemImage.xaml</DependentUpon>
@@ -125,6 +121,10 @@
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
       <Project>{ca499fb6-721e-460a-b81a-cc74e0b5b9cf}</Project>
       <Name>DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shared\Led\Led.csproj">
+      <Project>{f584a681-0738-4ad2-b51f-f703cb55236d}</Project>
+      <Name>Led</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

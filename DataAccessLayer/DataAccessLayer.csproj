@@ -93,6 +93,7 @@
     <Compile Include="Models\QCS.cs" />
     <Compile Include="Models\Store.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharedFiles\BaseViewModel.cs" />
     <Compile Include="StoreDB\AppliedCr.cs" />
     <Compile Include="StoreDB\AutoNumber.cs" />
     <Compile Include="StoreDB\BillCyclePeriod.cs" />

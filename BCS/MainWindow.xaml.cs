@@ -29,9 +29,9 @@ namespace BCS
         BCSandGSSVM vm;
         
         DispatcherTimer PhigTimer;
+        Logger logger = LogManager.GetLogger("BCS");
         string StoreConnectionString;
         string AssemblyConnectionString;
-        Logger logger = LogManager.GetLogger("BCS");
         public MainWindow()
         {
             InitializeComponent();
@@ -122,7 +122,7 @@ namespace BCS
             }
 
 
-            vm.OpenDB(StoreConnectionString);
+            vm.OpenBCSandStoreDB();
             vm.OpenAssemblyDB(AssemblyConnectionString);
             vm.GetOurEntities();   //operates on background thread
 
