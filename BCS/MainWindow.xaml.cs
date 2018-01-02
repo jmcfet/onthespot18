@@ -123,8 +123,8 @@ namespace BCS
 
 
             vm.OpenBCSandStoreDB();
-            vm.OpenAssemblyDB(AssemblyConnectionString);
-            vm.GetOurEntities();   //operates on background thread
+            vm.OpenAssemblyDB();
+            vm.GetOurEntities();   
 
 
             this.Dispatcher.Invoke(new Action(delegate ()     //use dispatcher to update UI

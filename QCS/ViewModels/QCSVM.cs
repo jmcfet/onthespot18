@@ -87,10 +87,8 @@ namespace QCS.ViewModels
             public OnTheSpot.Models.InterogatorInfo getInfoForInterogator()
             {
 
-                DBAccess db = new DBAccess(1);
-
+               
                 assemblyInfo.HeatSeal = barcode;
-                //  assemblyInfo.CustomerID = 100006;
                 return db.getInfoForInterogator(assemblyInfo);
 
 

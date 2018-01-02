@@ -16,15 +16,14 @@ namespace DataAccessLayer
         BCSContext db = new BCSContext();
         Logger logger = LogManager.GetLogger("OnTheSpot");
         StoreContext dbStore;
-
+        List<string> connectionNames = new List<string>() { "Store1Context", "Store2Context", "Store3Context", "Store4Context" };
         public DBAccess(int storeid)
         {
-            List<string> connectionNames = new List<string>() { "Store1Context", "Store2Context", "Store3Context", "Store4Context" };
+           
 
             string storeconnectionstring = connectionNames[storeid-1];
             //retrieve the connection string from app.config
             ConnectionStringSettingsCollection connections = ConfigurationManager.ConnectionStrings;
-
             dbStore = new StoreContext(connections[storeconnectionstring].ConnectionString);
 
            
@@ -62,6 +61,7 @@ namespace DataAccessLayer
                 modelCats = new ObservableCollection<OnTheSpot.Models.Category>();
                 foreach (Category cat in dbCats)
                 {
+                   
                     OnTheSpot.Models.Category model = new OnTheSpot.Models.Category()
                     {
                         ID = cat.ID,
@@ -71,13 +71,46 @@ namespace DataAccessLayer
                     modelCats.Add(model);
                 }
             }
-            catch  (Exception e)
+            catch (Exception e)
             {
                 error = "Critical Error: Could not open Categories DataBase";
             }
 
             return modelCats;
         }
+
+        public ObservableCollection<OnTheSpot.Models.Category> GetBCSCats(out string error)
+        {
+            ObservableCollection<OnTheSpot.Models.Category> modelCats = null;
+            //categorys were added for the QCS so need to remove for BCS
+            List<string> QCSCats = new List<string>() { "Shirts", "bottoms", "tops", "Household" };
+            error = string.Empty;
+            try
+            {
+                List<Category> dbCats = db.Categories.ToList();
+
+                modelCats = new ObservableCollection<OnTheSpot.Models.Category>();
+                foreach (Category cat in dbCats)
+                {
+                    if (QCSCats.Contains(cat.Name))
+                        continue;
+                    OnTheSpot.Models.Category model = new OnTheSpot.Models.Category()
+                    {
+                        ID = cat.ID,
+                        Description = cat.Description,
+                        Name = cat.Name
+                    };
+                    modelCats.Add(model);
+                }
+            }
+            catch (Exception e)
+            {
+                error = "Critical Error: Could not open Categories DataBase";
+            }
+
+            return modelCats;
+        }
+
 
         public OnTheSpot.Models.Item getItem(string barcode)
         {
@@ -309,15 +342,13 @@ namespace DataAccessLayer
         public OnTheSpot.Models.InterogatorInfo getInfoForInterogator(OnTheSpot.Models.AutoSortInfo  customerstuff)
         {
             double heatseal = double.Parse(customerstuff.HeatSeal);
-            
-            List<string> connectionNames = new List<string>() { "Store1Entities", "Store2Entities", "Store3Entities", "Store4Entities" };
-            
+
             string storeconnectionstring = connectionNames[customerstuff.storeid - 1];
             //retrieve the connection string from app.config
             ConnectionStringSettingsCollection connections = ConfigurationManager.ConnectionStrings;
 
             StoreContext db = new StoreContext(connections[storeconnectionstring].ConnectionString);
-            
+
             OnTheSpot.Models.InterogatorInfo info = (from cust in db.Customers
                                                      where cust.CustomerID == customerstuff.CustomerID
                                                      from heat in db.Heatseals

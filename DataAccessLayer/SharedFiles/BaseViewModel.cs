@@ -26,7 +26,7 @@ namespace OnTheSpot.ViewModels
         private bool _bTurnOnRegister = true;
         private bool _bLoggedIn = false;
 // this is used for developing when there is no hardware and to allow batch mode in BCS to work
-        public bool bSimulatePhigetsMode = true;     
+        public bool bSimulatePhigetsMode = false;     
         Logger logger = LogManager.GetLogger("OnTheSpot");
         public bool bTurnOnRegister
         {
@@ -167,11 +167,11 @@ namespace OnTheSpot.ViewModels
    
         }
 
-        public void OpenAssemblyDB(string connectionString)
+        public void OpenAssemblyDB()
         {
-            logger.Info("OpenAssemblyDB " + connectionString);
-            AssemblyDB = new AssemblyAccess(connectionString);
-            logger.Info("OpenAssemblyDB done " + connectionString);
+          
+            AssemblyDB = new AssemblyAccess();
+           
         }
 
 
@@ -179,7 +179,7 @@ namespace OnTheSpot.ViewModels
         public void GetOurEntities()
         {
             logger.Info("GetOurEntities ");
-             CleaningCats = db.GetCats(out DBerrormsg);
+             CleaningCats = db.GetBCSCats(out DBerrormsg);
             if (DBerrormsg.Count() > 2)
             {
   //              MessageBox.Show("Cound not open Categories DataBase");

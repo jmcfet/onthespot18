@@ -54,6 +54,7 @@
                 <PasswordBox  Height="23" Name="passwordBox1" Width="120" Visibility="Collapsed"/>
                 <Button Content=">" Height="21" Name="passwordEntered" Width="36"  Click="passwordEntered_Click" Visibility="Collapsed"/>
                <Button Content="Version" Height="21" Name="version" Width="67" Margin="12"  />
+                <Button Name="inter" Content="Interogator" Margin="12"   Width="67" Height="21" Click="Integator_Click" Visibility="Hidden"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1" x:Name="LoadingState">
@@ -75,11 +76,11 @@
                 <TextBox  x:Name="EmployeeID"    HorizontalAlignment="Left" Height="23" Margin="281,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" KeyUp="EmployeeID_KeyUp"/>
             </Grid>
             <Grid x:Name="Loggedin"  Grid.Row="1" Visibility="Visible">
-                <TextBlock x:Name="msg" Style="{StaticResource TextLabel}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Height="50" Width="379" FontSize="20"/>
+                <TextBlock x:Name="msg" Style="{StaticResource TextLabel}" HorizontalAlignment="Center" Margin="10,0,0,0" VerticalAlignment="Top" Height="50" Width="379" FontSize="20"/>
                 <!--<Button x:Name="ShowPass"  Content="Show Pass" HorizontalAlignment="Left" Margin="421,10,0,0" VerticalAlignment="Top" Width="65" Click="Pass_Click"/>-->
                 <Button Name="logout" Content="Logout" HorizontalAlignment="Left" Margin="499,10,0,0" VerticalAlignment="Top" Width="58" Click="Log_Click" Visibility="Collapsed"/>
                 <Button Name="Saving" Content="Saving" HorizontalAlignment="Left"  Margin="700,10,0,0" VerticalAlignment="Top" Width="81"  Background="Green" Visibility="Collapsed"/>
-                <Button Name="inter" Content="Interogator" HorizontalAlignment="Left" Margin="588,10,0,0" VerticalAlignment="Top" Width="67" Click="Integator_Click" Visibility="Hidden"/>
+                
 
 
             </Grid>

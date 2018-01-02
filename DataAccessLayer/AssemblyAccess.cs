@@ -12,7 +12,7 @@ namespace DataAccessLayer
     {
         Assembly assemblyEnties;
         
-        public AssemblyAccess(string connectionstring)
+        public AssemblyAccess()
         {
             assemblyEnties = new Assembly();
         }

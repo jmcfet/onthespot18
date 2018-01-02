@@ -13,6 +13,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -48,10 +49,7 @@ namespace QCS
         {
             this.Title = "On the Spot QCS";
             int i = 0;
-            if (!vm.bLoggedIn)
-                Note.Visibility = Visibility.Hidden;
-            else
-                Note.Visibility = Visibility.Visible;
+            Note.Visibility = Visibility.Visible;
             //if (vm.GetShowPass() == 1)
             //{
             //    ShowPass.Content = "Hide pass";
@@ -77,6 +75,8 @@ namespace QCS
             //make sure we can open database
             vm.OpenBCSandStoreDB();
             vm.GetOurEntities();
+            vm.OpenAssemblyDB();
+
             if (vm.DBerrormsg == string.Empty)
             {
                 led1.ColorOn = Colors.Green;
@@ -154,6 +154,7 @@ namespace QCS
                 if (vm.bLoggedIn)
                     vm.BarcodeEntered = true;
                 vm.ShowButtons = true;
+                inter.Visibility = Visibility.Visible;
                 NoteBox.Visibility = System.Windows.Visibility.Collapsed;
                 vm.Note = string.Empty;
                 if (item.Note != null && item.Note != string.Empty)
@@ -174,7 +175,7 @@ namespace QCS
                 else
                     duedate.Text = date.DayOfWeek.ToString() + " " + date.Day;
 
-                vm.Duedate = duedate.Text;
+          //      vm.Duedate = duedate.Text;
                 CustomerName.Text = vm.activeCustomer.FirstName + " " + vm.activeCustomer.LastName;
                 //check if this is in Route
                 int RFIDlen = vm.assemblyInfo.rfid.Length;
@@ -228,7 +229,7 @@ namespace QCS
         {
             //test ddd
             double itemCode = 0;
-            Barcode.Text = testCodes[dumcode++];     //danger   yyyyyyy
+   //         Barcode.Text = testCodes[dumcode++];     //danger   yyyyyyy
             logger.Info("Read bar code " + Barcode.Text);
             if (Barcode.Text == string.Empty)
                 return false;
@@ -291,16 +292,11 @@ namespace QCS
                 return;
             }
 
-            
-            //DoubleAnimation da = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(2));
-            //da.AutoReverse = false;
-            //UI.BeginAnimation(Line.OpacityProperty, da);
 
+            UI.Visibility = Visibility.Visible;
             Login.Visibility = Visibility.Collapsed;
             msg.Text = vm.Employeename + " logged in";
             Loggedin.Visibility = Visibility.Visible;
-            Note.Visibility = Visibility.Hidden;
-
             Barcode.Focus();
 
 
@@ -321,7 +317,7 @@ namespace QCS
         {
             Loggedin.Visibility = Visibility.Collapsed;
             Login.Visibility = Visibility.Visible;
-        //    UI.Visibility = Visibility.Collapsed;
+            UI.Visibility = Visibility.Collapsed;
             logout.Visibility = Visibility.Visible;
      //       ShowPass.Visibility = Visibility.Collapsed;
         }
@@ -360,7 +356,7 @@ namespace QCS
             ErrorTxt.Visibility = Visibility.Collapsed;
             NoteBox.Visibility = Visibility.Collapsed;
             picture.Visibility = Visibility.Collapsed;
-            Note.Visibility = Visibility.Collapsed;
+            
 
         }
         private void ImgButtonClick(object sender, RoutedEventArgs e)
