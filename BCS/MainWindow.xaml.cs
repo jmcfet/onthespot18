@@ -117,7 +117,7 @@ namespace BCS
                 DBErrorMsg.Text = "Phidgit controller not operational";
                 textBlock1.Text = "System Initialization Failed";
                 led1.ColorOn = Colors.Red;
-                led1.IsActive = true;
+                led1.IsActive = true;  //test
 
             }
 
