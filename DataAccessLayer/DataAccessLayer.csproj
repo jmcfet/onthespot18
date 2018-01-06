@@ -78,10 +78,13 @@
     <Compile Include="BCSDb\OTISIdsToFabId.cs" />
     <Compile Include="BCSDb\Printer.cs" />
     <Compile Include="BCSDb\QCSInfo.cs" />
+    <Compile Include="CalendarAccess.cs" />
     <Compile Include="Data\Repository.cs" />
     <Compile Include="DBAccess.cs" />
+    <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\AutosortInfo.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\BindableObject.cs" />
     <Compile Include="Models\Bins.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Customer.cs" />
