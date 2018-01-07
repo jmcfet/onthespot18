@@ -79,6 +79,7 @@
     <Compile Include="BCSDb\Printer.cs" />
     <Compile Include="BCSDb\QCSInfo.cs" />
     <Compile Include="CalendarAccess.cs" />
+    <Compile Include="DashQueries.cs" />
     <Compile Include="Data\Repository.cs" />
     <Compile Include="DBAccess.cs" />
     <Compile Include="Models\Appointment.cs" />
@@ -88,12 +89,17 @@
     <Compile Include="Models\Bins.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\CustomerInfo.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\GarmentIds.cs" />
     <Compile Include="Models\GSS.cs" />
     <Compile Include="Models\InterogatorInfo.cs" />
     <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\missingPieceInfo.cs" />
+    <Compile Include="Models\OrdersLostOnRacktoMissingRackLocationData.cs" />
     <Compile Include="Models\printers.cs" />
     <Compile Include="Models\QCS.cs" />
+    <Compile Include="Models\ShirtInfo.cs" />
     <Compile Include="Models\Store.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SharedFiles\BaseViewModel.cs" />
