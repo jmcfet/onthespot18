@@ -22,7 +22,7 @@ namespace DataAccessLayer
         public DashQueries()
         {
             ConnectionStringSettingsCollection connections = ConfigurationManager.ConnectionStrings;
-            string StoreConnectionString = connections["StoreContext"].ConnectionString;
+            string StoreConnectionString = connections["Store1Context"].ConnectionString;
             dbStore1 = new StoreContext(StoreConnectionString);
             StoreConnectionString = connections["Store2Context"].ConnectionString;
             dbStore2 = new StoreContext(StoreConnectionString);
