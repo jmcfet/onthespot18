@@ -208,6 +208,8 @@ namespace DataAccessLayer
                 CurrentContext = GetDBStore(i);
                 DateTime prev = DateTime.Today.AddDays(-7).Date;
                 var invs = from inv in CurrentContext.Invoices
+                           join id in CurrentContext.InvoiceDetails on inv.InvoiceID equals id.InvoiceID
+                           where id.Voided == false
                            where DbFunctions.TruncateTime(inv.DueDate) >= prev.Date
                            && inv.Rack == null && inv.DepartmentID != 5 && inv.PaidAmount == 0
                            select inv;

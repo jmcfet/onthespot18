@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2003
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCS", "BCS\BCS.csproj", "{7AD04500-740E-4C24-9B8A-F813B471B2C7}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Led", "Shared\Led\Led.csproj", "{F584A681-0738-4AD2-B51F-F703CB55236D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DashBoard", "DashBoard\DashBoard.csproj", "{849331D4-5884-4F11-9F29-F494F0F29A65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DashboardLite", "DashboardLite\DashboardLite.csproj", "{93817216-61E4-448B-94EC-B62DB23DB201}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{849331D4-5884-4F11-9F29-F494F0F29A65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{849331D4-5884-4F11-9F29-F494F0F29A65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{849331D4-5884-4F11-9F29-F494F0F29A65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93817216-61E4-448B-94EC-B62DB23DB201}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93817216-61E4-448B-94EC-B62DB23DB201}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93817216-61E4-448B-94EC-B62DB23DB201}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93817216-61E4-448B-94EC-B62DB23DB201}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
