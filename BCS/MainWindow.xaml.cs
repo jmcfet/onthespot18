@@ -139,7 +139,7 @@ namespace BCS
                     {
                         LoadedDone.Visibility = Visibility.Visible;
                         LoadingState.Visibility = Visibility.Collapsed;
-                        ShowBCSUI();
+                       
                        
                     }
                 }
@@ -151,7 +151,7 @@ namespace BCS
                     led2.IsActive = true;
                     vm.bTurnOnRegister = false;
                 }
-
+                ShowBCSUI();
 
             }));
             logger.Info("CheckSystemState end");

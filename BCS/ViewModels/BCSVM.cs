@@ -17,6 +17,8 @@ namespace OnTheSpot.ViewModels
     {
         public bool BCSMode = true;
         public InterfaceKit PhidgitController;
+        // this is used for developing when there is no hardware and to allow batch mode in BCS to work
+        public bool bSimulatePhigetsMode = false;
         public BCSandGSSVM(bool Mode)
         {
             BCSMode = Mode;
