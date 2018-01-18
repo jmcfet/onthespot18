@@ -208,23 +208,28 @@ namespace DataAccessLayer
                 CurrentContext = GetDBStore(i);
                 DateTime prev = DateTime.Today.AddDays(-7).Date;
                 var invs = from inv in CurrentContext.Invoices
-                           join id in CurrentContext.InvoiceDetails on inv.InvoiceID equals id.InvoiceID
-                           where id.Voided == false
+                           
                            where DbFunctions.TruncateTime(inv.DueDate) >= prev.Date
                            && inv.Rack == null && inv.DepartmentID != 5 && inv.PaidAmount == 0
                            select inv;
 
                 foreach (Invoice inv in invs)
                 {
-
-
-                    OrdersLostOnRacktoMissingRackLocationData data = new OrdersLostOnRacktoMissingRackLocationData()
+                    //might have been voided so check in InvoiceDetail
+                    InvoiceDetail detail = (from id in CurrentContext.InvoiceDetails
+                                            where id.InvoiceID == inv.InvoiceID
+                                            && id.Voided == true
+                                            select id).FirstOrDefault();
+                    if (detail == null)   //nope then we want it
                     {
-                        dueDate = inv.DueDate,
-                        invoiceID = inv.InvoiceID,
-                        storeID = i
-                    };
-                    ListData.Add(data);
+                        OrdersLostOnRacktoMissingRackLocationData data = new OrdersLostOnRacktoMissingRackLocationData()
+                        {
+                            dueDate = inv.DueDate,
+                            invoiceID = inv.InvoiceID,
+                            storeID = i
+                        };
+                        ListData.Add(data);
+                    }
 
                 }
 
