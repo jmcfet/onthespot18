@@ -12,6 +12,37 @@
     ShowInTaskbar="False"
     WindowStartupLocation="CenterOwner" 
     FocusManager.FocusedElement="{Binding ElementName=NoteText}">
+    <Window.Resources>
+        <Style x:Key="placeHolder" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid>
+                        <TextBox Text="{Binding Path=Text,
+                                                RelativeSource={RelativeSource TemplatedParent}, 
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                 x:Name="textSource" 
+                                 Background="Transparent" 
+                                 Panel.ZIndex="2" />
+                        <TextBox Text="{TemplateBinding Tag}" Background="{TemplateBinding Background}" Panel.ZIndex="1">
+                            <TextBox.Style>
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Setter Property="Foreground" Value="Transparent"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=Text, Source={x:Reference textSource}}" Value="">
+                                            <Setter Property="Foreground" Value="LightGray"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+        </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="41*"/>
@@ -25,8 +56,9 @@
             <RowDefinition Height="46*"/>
         </Grid.RowDefinitions>
         <!-- Accept or Cancel -->
+
+        <TextBox x:Name="NoteText" Style="{StaticResource placeHolder}" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Tag="Please enter note" Grid.ColumnSpan="2" Margin="0.2,10.2,33.6,10" Grid.RowSpan="2"/>
        
-       <TextBox x:Name="NoteText"  Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Text="Please enter note" Grid.ColumnSpan="2" Margin="0.2,10.2,33.6,10" Grid.RowSpan="2"/>
         <Button Content="OK" Grid.Column="2" HorizontalAlignment="Left" Margin="0.2,0,0,0" Grid.Row="3" VerticalAlignment="Top" Width="75" Height="36" Click="Button_Click_1"/>
         <Button Content="CANCEL" Grid.Column="2" HorizontalAlignment="Left" Margin="92.2,0,0,0" Grid.Row="3" VerticalAlignment="Top" Width="75" Height="36" Click="Button_Click_2"/>
 

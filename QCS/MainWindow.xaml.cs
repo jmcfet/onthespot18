@@ -47,13 +47,17 @@ namespace QCS
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            //make sure we can open database
+            vm.OpenBCSandStoreDB();
+            vm.GetOurEntities();
+            vm.OpenAssemblyDB();
             this.Title = "On the Spot QCS";
             int i = 0;
             Note.Visibility = Visibility.Visible;
-            //if (vm.GetShowPass() == 1)
-            //{
-            //    ShowPass.Content = "Hide pass";
-            //}
+            if (vm.GetShowPass() == 1)
+            {
+                ShowPass.Content = "Hide pass";
+            }
             foreach (object but in buttonsContainer.Children)
             {
 
@@ -65,17 +69,14 @@ namespace QCS
                 }
                 i++;
             }
-            //if (vm.GetShowPass() == 1)
+            //if (vm.GetShowPass() == 1)    later
             //    PassButton.Visibility = Visibility.Visible;
             timer2 = new DispatcherTimer();
             timer2.Interval = TimeSpan.FromSeconds(1);
             timer2.Tick += new EventHandler(timer2_Tick);
             EmployeeID.Focus();
             Barcode.TextChanged += new TextChangedEventHandler(Barcode_TextChanged);
-            //make sure we can open database
-            vm.OpenBCSandStoreDB();
-            vm.GetOurEntities();
-            vm.OpenAssemblyDB();
+           
 
             if (vm.DBerrormsg == string.Empty)
             {
@@ -306,7 +307,7 @@ namespace QCS
         {
             GetNote popup = new GetNote(vm);
             popup.ShowDialog();
-            if (vm.Note == null)
+            if (vm.Note == null ||vm.Note.Count() == 0  )
                 return;
             vm.AddNote(Barcode.Text, vm.Note);
             NoteText.Text = vm.Note;
@@ -319,7 +320,7 @@ namespace QCS
             Login.Visibility = Visibility.Visible;
             UI.Visibility = Visibility.Collapsed;
             logout.Visibility = Visibility.Visible;
-     //       ShowPass.Visibility = Visibility.Collapsed;
+            ShowPass.Visibility = Visibility.Collapsed;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -388,5 +389,22 @@ namespace QCS
             popup.ShowDialog();
         }
 
+        private void Pass_Click(object sender, RoutedEventArgs e)
+        {
+            string label = ShowPass.Content as string;
+            if (label == "Show Pass")
+            {
+                PassButton.Visibility = Visibility.Visible;
+                ShowPass.Content = "Hide Pass";
+                vm.SaveShowPass(1);
+            }
+            else
+            {
+                ShowPass.Content = "Show Pass";
+                PassButton.Visibility = Visibility.Collapsed;
+                vm.SaveShowPass(0);
+            }
+
+        }
     }
 }
