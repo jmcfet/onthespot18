@@ -133,15 +133,14 @@ namespace BCS
                 {
                     led2.ColorOn = Colors.Green;
                     led2.IsActive = true;
-                    vm.bTurnOnRegister = true;
+                    
                     textBlock1.Text = "System Initialization Complete";
-                    if (led1.ColorOn == Colors.Green || vm.bSimulatePhigetsMode)
-                    {
-                        LoadedDone.Visibility = Visibility.Visible;
-                        LoadingState.Visibility = Visibility.Collapsed;
+                    
+                    LoadedDone.Visibility = Visibility.Visible;
+                    LoadingState.Visibility = Visibility.Collapsed;
                        
                        
-                    }
+                   
                 }
                 else
                 {
@@ -149,7 +148,7 @@ namespace BCS
                     textBlock1.Text = "System Initialization Failed";
                     led2.ColorOn = Colors.Red;
                     led2.IsActive = true;
-                    vm.bTurnOnRegister = false;
+                    
                 }
                 ShowBCSUI();
 
@@ -656,7 +655,7 @@ namespace BCS
             }
             Action.Text = "Place in Lighted bin";
             logger.Info("turn on bin light" + TargetBin.PhidgetSlot.ToString());
-            if (vm.bSimulatePhigetsMode == false)
+            if (vm.PhidgitController.Attached)
             {
                 turnoffLights();    //in case on is in the wrong state
                 vm.PhidgitController.outputs[TargetBin.PhidgetSlot] = true;

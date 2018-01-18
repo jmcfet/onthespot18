@@ -27,18 +27,7 @@ namespace OnTheSpot.ViewModels
         private bool _bLoggedIn = false;
 
         Logger logger = LogManager.GetLogger("OnTheSpot");
-        public bool bTurnOnRegister
-        {
-            get { return _bTurnOnRegister; }
-            set
-            {
-                if (_bTurnOnRegister != value)
-                {
-                    _bTurnOnRegister = value;
-                    NotifyPropertyChanged("bTurnOnRegister");
-                }
-            }
-        }
+        
         public bool bLoggedIn
         {
             get { return _bLoggedIn; }
