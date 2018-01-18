@@ -746,7 +746,7 @@ namespace BCS
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             //check if the light was turned on
-            if (!vm.bSimulatePhigetsMode)
+            if (vm.PhidgitController.Attached)
             {
                 if (vm.PhidgitController.outputs[TargetBin.PhidgetSlot] == true)
                     vm.PhidgitController.outputs[TargetBin.PhidgetSlot] = false;
