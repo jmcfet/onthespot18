@@ -230,6 +230,8 @@ namespace BCS
             {
                 vm.BatchButtonText = "Batch On";
                 BatchOff();
+                ButRow1.Children.Clear();
+                ButRow2.Children.Clear();
                 ReClassify.Visibility = Visibility.Visible;
                 QuickReClassify.Visibility = Visibility.Visible;
             }
@@ -257,6 +259,8 @@ namespace BCS
             int ii = 0;
             ButRow1.Visibility = Visibility.Visible;   //batch renders these inVisible
             ButRow2.Visibility = Visibility.Visible;
+            ButRow1.Children.Clear();
+            ButRow2.Children.Clear();
             foreach (Category cat in vm.CleaningCats)
             {
                 if (cat.ID == vm.unknownCat.ID)
