@@ -105,7 +105,7 @@ namespace DashBoard
             Results.Content = new DbQuerys();
             NewAppFrame(dropboxPath + @"\OnTheSpotBins\BCS\", "BCS.exe", bcs);
             NewAppFrame(dropboxPath + @"\OnTheSpotBins\QCS\", "qcs.exe", qcs);
-            NewAppFrame(dropboxPath + @"\Scheduler\", "scheduler.exe", sch);
+            NewAppFrame(dropboxPath + @"\OnTheSpotBins\scheduler\", "scheduler.exe", sch);
             WebBrowserHelper.ClearCache();
             wbSample.Navigate("http://192.168.1.3");
             HideScriptErrors(wbSample, true);
