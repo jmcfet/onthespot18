@@ -18,14 +18,14 @@
 
             </StackPanel>
             <StackPanel HorizontalAlignment="Center" Height="60" Margin="10,34,0,0" VerticalAlignment="Top"  Orientation="Horizontal">
-                <Button Name="cpr" Content="CPR " Margin="0,0,10,0" Click="button_Click"/>
-                <Button  Name="missing" Content="Missing" Margin="0,0,10,0" Click="button_Click"/>
+                <Button Name="cpr" Background="LightGray" Content="CPR " Margin="0,0,10,0" Click="button_Click"/>
+                <Button  Name="missing" Background="LightGray" Content="Missing" Margin="0,0,10,0" Click="button_Click"/>
 
-                <Button Name="shirts" Content="Shirts"  Margin="0,0,10,0" Click="button_Click"/>
-                <Button Name="bottoms" Content="bottoms" Margin="0,0,10,0" Click="button_Click"/>
-                <Button Name="tops" Content="tops" Margin="0,0,10,0" Click="button_Click"/>
-                <Button Name="households"  Margin="0,0,10,0" Click="button_Click"/>
-                <Button Name="Missingonrack"  Margin="0,0,10,0" Click="button_Click"/>
+                <Button Name="shirts" Background="LightGray" Content="Shirts"  Margin="0,0,10,0" Click="button_Click"/>
+                <Button Name="bottoms" Background="LightGray" Content="bottoms" Margin="0,0,10,0" Click="button_Click"/>
+                <Button Name="tops" Background="LightGray" Content="tops" Margin="0,0,10,0" Click="button_Click"/>
+                <Button Name="households" Background="LightGray" Margin="0,0,10,0" Click="button_Click"/>
+                <Button Name="Missingonrack" Background="LightGray"  Margin="0,0,10,0" Click="button_Click"/>
 
             </StackPanel>
             <DataGrid Name="detailswithCheck" AutoGeneratingColumn="details_AutoGeneratingColumn" HorizontalAlignment="Center" Width="600" Height="300" Visibility="Collapsed">

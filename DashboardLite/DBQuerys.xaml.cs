@@ -36,7 +36,6 @@ namespace DashboardLite
         List<ShirtInfo> shirtsNotDone, bottomsNotDone, topsNotDone, houseHolds;
         List<missingPieceInfo> missingorders;
         List<CustomerInfo> cprInfo;
-        List<GarmentIds> gids;
         List<OrdersLostOnRacktoMissingRackLocationData> missingOnrrack;
         int addDays = 0;
 
@@ -49,6 +48,7 @@ namespace DashboardLite
 
             GetResults();
             ShowResults();
+            
             timer = new System.Timers.Timer();
             timer.Elapsed += Timer_Tick;
             timer.Interval = 2000;
@@ -108,10 +108,14 @@ namespace DashboardLite
             missing.Content = string.Format("missing {0}", missingorders.Count);
             if (missingorders.Count > 0)
                 missing.Background = new SolidColorBrush(Colors.Red);
+            else
+                missing.Background = new SolidColorBrush(Colors.LightGray); 
             cpr.Content = string.Format("CPR {0}", cprInfo.Count);
             Missingonrack.Content = string.Format("rackmissing {0}", missingOnrrack.Count);
             if (missingOnrrack.Count > 0)
                 Missingonrack.Background = new SolidColorBrush(Colors.Red);
+            else
+                Missingonrack.Background = new SolidColorBrush(Colors.LightGray);
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
