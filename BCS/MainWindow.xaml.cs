@@ -26,7 +26,7 @@ namespace BCS
     /// </summary>
     public partial class MainWindow : Window
     {
-        BCSandGSSVM vm;
+        BCSandGSSVM vm;   //test
         
         DispatcherTimer PhigTimer;
         Logger logger = LogManager.GetLogger("BCS");
